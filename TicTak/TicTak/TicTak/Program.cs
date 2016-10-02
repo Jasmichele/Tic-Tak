@@ -16,7 +16,6 @@ namespace TicTak
             string[] grid = new string[] { "0", "1", "2", "3", "4", "5", "6", "7", "8" };
             bool gameOver = false;
             bool validChoice = false;
-            
 
             Console.WriteLine("Player 1 is X");
             Console.WriteLine("Player 2 is O");
@@ -29,20 +28,19 @@ namespace TicTak
                 while (!validChoice)
                 {
                     validChoice = Cycle(grid);
-                    if (gameOver = Tie(grid) || Winner(grid))
-                    {
-                        break;
-                    }
+                    Winner(grid);
+                    Tie(grid);
+                    gameOver = Cycle(grid);
                     Board(grid);
-                    validChoice = Cycle2(grid);
-                    if (gameOver = Tie(grid) || Winner(grid))
-                    {
-                        break;
-                    }
+                    validchoice = Cycle2(grid);
+                    Winner(grid);
+                    Tie(grid);
+                    gameOver = Cycle2(grid);
                     Board(grid);
                 }
             }
             Console.ReadLine();
+            Console.Clear();
         }
 
         static void Board(string[] table)
@@ -52,11 +50,13 @@ namespace TicTak
             Console.WriteLine(string.Format("{0}|{1}|{2}", table[3], table[4], table[5]));
             Console.WriteLine("-----");
             Console.WriteLine(string.Format("{0}|{1}|{2}", table[6], table[7], table[8]));
+
         }
 
         static bool Cycle(string[] p1)
         {
             Console.WriteLine("Player 1 pick spot");
+
             int intAnswer;
             string answer = Console.ReadLine();
             intAnswer = Convert.ToInt32(answer);
@@ -68,7 +68,6 @@ namespace TicTak
                 intAnswer = Convert.ToInt32(answer);
             }
             p1[intAnswer] = "X";
-            Console.Clear();
             return false;
         }
 
@@ -87,7 +86,6 @@ namespace TicTak
             }
             {
                 p2[intAnswer] = "O";
-                Console.Clear();
                 return false;
             }
         }
@@ -97,42 +95,34 @@ namespace TicTak
             if (array[0] == array[1] && array[1] == array[2])
             {
                 Console.WriteLine("Winner Winner!!");
-                return true;
             }
             else if (array[3] == array[4] && array[4] == array[5])
             {
                 Console.WriteLine("Winner Winner!!");
-                return true;
             }
             else if (array[6] == array[7] && array[7] == array[8])
             {
                 Console.WriteLine("Winner Winner!!");
-                return true;
             }
             else if (array[0] == array[3] && array[3] == array[6])
             {
                 Console.WriteLine("Winner Winner!!");
-                return true;
             }
             else if (array[1] == array[4] && array[4] == array[7])
             {
                 Console.WriteLine("Winner Winner!!");
-                return true;
             }
             else if (array[2] == array[5] && array[5] == array[8])
             {
                 Console.WriteLine("Winner Winner!!");
-                return true;
             }
             else if (array[0] == array[4] && array[4] == array[8])
             {
                 Console.WriteLine("Winner Winner!!");
-                return true;
             }
             else if (array[2] == array[4] && array[4] == array[6])
             {
                 Console.WriteLine("Winner Winner!!");
-                return true;
             }
             return false;
         }
